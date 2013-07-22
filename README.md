@@ -10,13 +10,14 @@ devMgr needs to know that any device joins or leaves the cloudlet.
 Moreover, devMgr needs to obtain the information of the devices in this cloudlet.
 Thus, the node solicitation protocol (NSP) is designed for this purpose.
 
-III. Node Solicitation Protocol
+III. Node Solicitation Protocol (NSP)
 There are two roles in NSP: node (N) is the device. devMgr (M) is the device manager.
 The message format of NSP is based on XML.
 
 III.1. Message Type
-When N want to join a cloudlet, N must send a join message to M in this cloudlet.
-When N want to leave this cloudlet, N must send a leave message to M in this cloudlet.
+When N wants to join a cloudlet, N must send a join message to M in this cloudlet.
+When N wants to leave this cloudlet, N must send a leave message to M in this cloudlet.
+N needs to send a heart bit message to M every S (default is 30)seconds. S will depend on the mobility of N.
 
 III.2. Message Format
 A. Join Message
@@ -40,7 +41,17 @@ B. Leave Message
   </node>
 </status>
 
+C. Heart Bit Message
+<?xml version="1.0" encoding="UTF-8"?>
+<status>
+  <node action="heartbit">
+    <ip>1.2.3.4</ip>
+    <port>1234</port>
+  </node>
+</status>
+
 III.2 Message Handler
+A. Join and leave message handler
 When M receives the join message of N, M must insert the information of N into the nodes list.
 When M reveices the leave message of N, M must remove the information of N from the nodes list.
 The format of nodes list is shown as follows.
@@ -57,3 +68,7 @@ The format of nodes list is shown as follows.
     <bat>80</bat>
   </node>
 </nodelist>
+
+B. Heart bit message handler
+M needs to remove the information of N from the nodes list \ 
+if M do not receive the heart bit message from N in S (default is 30) seconds.
