@@ -37,8 +37,8 @@ public class devMgr {
 		}
 				
 		String root_dir;
-		String node_dir;
-		final String dest_path;   // = prop.getProperty("node_dir", "C:\\DEMO\\");
+		final String node_dir;
+		//final String dest_path;   // = prop.getProperty("node_dir", "C:\\DEMO\\");
 		final String nodes_file = "nodes.xml";  //= "nodes.xml";  // = "nodes.xml";
 		final int listen_port;    // = Integer.parseInt(prop.getProperty("devmgr_port", "12345"));
 		
@@ -47,11 +47,11 @@ public class devMgr {
 			
 			try {
 				prop.load(is);
-				root_dir = prop.getProperty("root_dir");
-				if(root_dir == null){
-					System.out.println("[devMgr][E] root_dir is NOT set in config file(" + configFile + ")");
-					System.exit(0);
-				}
+				//root_dir = prop.getProperty("root_dir");
+				//if(root_dir == null){
+				//	System.out.println("[devMgr][E] root_dir is NOT set in config file(" + configFile + ")");
+				//	System.exit(0);
+				//}
 				
 				node_dir = prop.getProperty("node_dir");
 				if(node_dir == null){
@@ -59,7 +59,7 @@ public class devMgr {
 					System.exit(0);
 				}				
 				
-				dest_path = root_dir + node_dir;
+				//dest_path = root_dir + node_dir;
 				//nodes_file = prop.getProperty("nodes_file", "nodes.xml");
 				listen_port = Integer.parseInt(prop.getProperty("devmgr_port", "12345"));	
 				
@@ -68,7 +68,7 @@ public class devMgr {
 				new Thread(){
 					public void run(){
 						try{
-							new GetDevReq(dest_path, nodes_file, listen_port);
+							new GetDevReq(node_dir, nodes_file, listen_port);
 						} catch(Exception e){
 							e.printStackTrace();
 						}

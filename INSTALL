@@ -1,0 +1,34 @@
+I. Introduction
+Device Manager (devMgr) is a standalone Java program developed by eclipse.
+
+II. Prerequsitions
+1. JDK must be installed (1.6 is strongly recommendded)
+2. Eclipse IDE
+
+III. Build devMgr
+1. Import devMgr project into eclipse.
+2. Export devMgr as a runnable jar
+3. Run it!
+
+IV. Run devMgr
+To run devMgr, please
+The command to run devMgr is
+
+> java -jar devMgt.jar [Path of configuration file]
+
+The default path of configuration file is ./aumc.config
+
+V. Configuration File
+In configuration file, there are two configuration parameters.
+1. The directory to store the XML files describing the node status (node_dir)
+In Windows, for example, 
+
+node_dir=C://CBMC//NODE//
+
+In Linux, for example
+
+node_dir=//cbmc//node//
+
+2. TCP/IP port number (devmgr_port)
+For example,
+devmgr_port=12345
